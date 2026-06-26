@@ -164,6 +164,21 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
 .swipe-hint{position:absolute;top:50%;transform:translateY(-50%);font-size:24px;color:var(--text-muted);opacity:0;transition:opacity .3s;pointer-events:none}
 .swipe-hint.left{left:8px}.swipe-hint.right{right:8px}
 .card-wrapper:active .swipe-hint{opacity:.5}
+.sidebar-footer{padding:2px 0}
+.sidebar-link{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:6px;border:none;background:transparent;color:var(--text-muted);font-size:12px;font-weight:500;cursor:pointer;transition:all .12s;width:100%;text-align:left;font-family:inherit}
+.sidebar-link:hover{background:var(--surface2);color:var(--text)}
+.sidebar-link:active{background:var(--surface3)}
+.modal-overlay{position:fixed;inset:0;z-index:9997;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
+.modal-overlay.show{opacity:1;visibility:visible}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;max-width:400px;width:100%;box-shadow:var(--shadow);position:relative;transform:scale(.9);transition:transform .3s}
+.modal-overlay.show .modal{transform:scale(1)}
+.modal h2{font-size:22px;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.modal p{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:16px}
+.modal .modal-name{font-size:17px;font-weight:600;color:var(--text);margin-bottom:14px;padding:8px 14px;background:var(--surface2);border-radius:8px;display:inline-block}
+.modal .modal-link{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:9px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .12s}
+.modal .modal-link:hover{background:var(--surface3);border-color:var(--green)}
+.modal-close{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text-muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.modal-close:hover{background:var(--surface3);color:var(--text)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:860px){
   .app{padding:8px;gap:8px}.sidebar{width:200px;min-width:200px;padding:14px 10px}.nav-btn{font-size:11px;padding:5px 7px}
@@ -191,6 +206,8 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
   .nav-label{font-size:12px;padding:10px 12px 4px}
   .stat-row{font-size:14px;padding:6px 0}
   .sidebar-stats{padding-top:14px}
+  .sidebar-link{padding:12px 14px;font-size:14px;border-radius:10px}
+  .sidebar-footer{padding:4px 0}
   .app{flex-direction:column;padding:5px;gap:5px}
   .main{justify-content:center;padding:56px 12px 12px;gap:8px}
   .controls{margin-top:12px}
@@ -264,6 +281,11 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
       <div class="stat-row"><span>Remaining</span><span class="num" id="stat-remaining">0</span></div>
       <div class="stat-row"><span>Progress</span><span class="num" id="stat-pct">0%</span></div>
     </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-footer">
+      <button class="sidebar-link" id="btn-about">&#9432; About</button>
+      <button class="sidebar-link" id="btn-feedback">&#9993; Feedback</button>
+    </div>
   </aside>
 
   <main class="main">
@@ -322,6 +344,15 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
   </main>
 </div>
 
+<div class="modal-overlay" id="about-modal">
+  <div class="modal">
+    <button class="modal-close" id="about-modal-close">&times;</button>
+    <h2>DeutschLern</h2>
+    <p>German flashcard app with 1600+ vocabulary cards across A1&ndash;B2 CEFR levels. Study nouns, verbs, adjectives, phrases, grammar and more with spaced repetition and exam filtering.</p>
+    <div class="modal-name">Rujan Khiuju</div>
+    <a class="modal-link" href="mailto:rujankhiuju@gmail.com">&#9993; Send feedback</a>
+  </div>
+</div>
 <script src="data.js"></script>
 <script>
 (function() {
@@ -800,6 +831,23 @@ function setupEvents() {
   $('btn-next').addEventListener('click', goNext);
   $('btn-shuffle').addEventListener('click', shuffleDeck);
 
+  $('btn-about').addEventListener('click', function() {
+    $('about-modal').classList.add('show');
+    if (window.innerWidth <= 700) {
+      $('sidebar').classList.remove('open');
+      $('sidebar-overlay').classList.remove('show');
+    }
+  });
+  $('about-modal-close').addEventListener('click', function() {
+    $('about-modal').classList.remove('show');
+  });
+  $('about-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('show');
+  });
+  $('btn-feedback').addEventListener('click', function() {
+    window.location.href = 'mailto:rujankhiuju@gmail.com';
+  });
+
   document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     switch (e.key) {
@@ -809,6 +857,7 @@ function setupEvents() {
       case '1': rateCard('again'); break;
       case '2': rateCard('good'); break;
       case '3': rateCard('easy'); break;
+      case 'Escape': $('about-modal').classList.remove('show'); break;
     }
   });
 
