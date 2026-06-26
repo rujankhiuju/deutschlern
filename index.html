@@ -625,7 +625,7 @@ function renderCardContent(c) {
     extra.innerHTML = '<span class="gender-info">' + (c.case || 'subordinating/main clause') + '</span>';
     extra.style.display = 'block';
   } else if (t === 'structure') {
-    extra.innerHTML = '<span class="gender-info">' + (c.example || '') + '</span>';
+    extra.innerHTML = '<span class="gender-info"><strong>Example:</strong> ' + (c.example || '') + '</span>';
     extra.style.display = 'block';
   } else if (t === 'adjective' || t === 'pronoun' || t === 'time' || t === 'color' || t === 'number') {
     extra.style.display = 'none';
