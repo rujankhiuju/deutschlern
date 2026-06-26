@@ -1954,7 +1954,7 @@ lines.append("var CARDS = [")
 
 for c in cards:
     parts = []
-    for k in ["id","level","type","german","english","article","plural","pattern","emoji","exam"]:
+    for k in ["id","level","type","german","english","article","plural","pattern","emoji","exam","example"]:
         if k in c:
             v = c[k]
             if isinstance(v, str):
