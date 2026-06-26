@@ -26,6 +26,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
 @keyframes gradientShift{0%{background-position:0% 50%}25%{background-position:100% 0%}50%{background-position:100% 100%}75%{background-position:0% 100%}100%{background-position:0% 50%}}
 .light body::before{background:linear-gradient(135deg,#e8e8f0,#d0d0e0,#e8e8f0,#d0d0e0)}
 .app{display:flex;width:100vw;height:100vh;max-width:1200px;margin:0 auto;padding:16px;gap:16px}
+.main{flex:1;display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;overflow-y:auto}
 .sidebar{width:230px;min-width:230px;background:var(--surface);border-radius:var(--radius);padding:20px 16px;display:flex;flex-direction:column;gap:2px;border:1px solid var(--border);overflow-y:auto}
 .splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);color:var(--text);transition:opacity .6s ease,visibility .6s ease;opacity:1;visibility:visible}
 .splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
@@ -190,11 +191,14 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
   .nav-btn{padding:4px 6px;white-space:nowrap;font-size:10px;justify-content:center}
   .nav-btn .count{display:none}
   .toggle-row{display:none}
-  .main{padding:6px;gap:10px}
-  .ctrl-btn{padding:6px 12px;font-size:11px}
+  .main{justify-content:center;padding:8px 12px;gap:8px}
+  .controls{margin-top:12px}
+  .ctrl-btn{padding:8px 18px;font-size:12px}
 }
 @media(max-width:480px){
-  .card-face{padding:16px}.ctrl-btn{padding:5px 10px;font-size:10px}
+  .card-face{padding:16px}
+  .controls{margin-top:8px}
+  .ctrl-btn{padding:6px 14px;font-size:11px}
 }
 </style>
 </head>
