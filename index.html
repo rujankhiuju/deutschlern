@@ -189,6 +189,8 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
 .login-btn{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--green),var(--blue));color:#0d0d1a;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s}
 .login-btn:hover{opacity:.85}
 .login-btn:active{transform:scale(.97)}
+.guest-btn{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .15s;margin-top:6px}
+.guest-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--text-muted)}
 .login-hint{color:var(--text-muted);font-size:12px;margin-top:14px;display:none}
 .login-hint .user-name{color:var(--text);font-weight:600}
 .switch-link{color:var(--text-muted);font-size:12px;cursor:pointer;text-decoration:underline;margin-top:6px;display:none}
@@ -384,6 +386,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
     <p>Enter your name to start learning</p>
     <input type="text" id="login-input" placeholder="Your name" maxlength="30" autocomplete="off">
     <button class="login-btn" id="login-btn">Start Learning</button>
+    <button class="guest-btn" id="guest-btn">Continue as Guest</button>
     <div class="login-hint" id="login-hint">Welcome back, <span class="user-name" id="login-existing-user"></span></div>
     <div class="switch-link" id="login-switch">Not you? Switch account</div>
   </div>
@@ -939,6 +942,9 @@ function setupEvents() {
 
   $('login-btn').addEventListener('click', function() {
     loginUser($('login-input').value);
+  });
+  $('guest-btn').addEventListener('click', function() {
+    loginUser('Guest');
   });
   $('login-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') loginUser(this.value);
