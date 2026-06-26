@@ -107,6 +107,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
 .card-face.time::before{background:var(--amber)}
 .card-face.color::before{background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow),var(--green),var(--blue),var(--purple))}
 .card-face.number::before{background:var(--lime)}
+.card-face.structure::before{background:linear-gradient(135deg,var(--green),var(--blue),var(--purple))}
 .card-back{transform:rotateY(180deg)}
 .card-badges{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;pointer-events:none;gap:4px;flex-wrap:wrap}
 .card-type-badge,.card-level-badge,.card-exam-badge{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 6px;border-radius:4px;background:var(--surface3);color:var(--text-muted);white-space:nowrap}
@@ -292,6 +293,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
       <button class="nav-btn" data-cat="case"><span class="dot dot-cyan"></span>Cases<span class="count" id="count-case">0</span></button>
       <button class="nav-btn" data-cat="grammar"><span class="dot dot-red"></span>Grammar<span class="count" id="count-grammar">0</span></button>
       <button class="nav-btn" data-cat="phrase"><span class="dot dot-purple"></span>Phrases<span class="count" id="count-phrase">0</span></button>
+      <button class="nav-btn" data-cat="structure"><span class="dot" style="background:linear-gradient(135deg,var(--green),var(--blue),var(--purple))"></span>Structures<span class="count" id="count-structure">0</span></button>
     </div>
 
     <div style="margin-top:auto"></div>
@@ -571,7 +573,7 @@ function renderCardContent(c) {
   frontEl.className = 'card-face ' + t;
   backEl.className = 'card-face card-back ' + t;
 
-  var badgeNames = { noun:'NOUN', verb:'VERB', adverb:'ADVERB', question:'QUESTION', case:'CASE', grammar:'GRAMMAR', phrase:'PHRASE', adjective:'ADJECTIVE', preposition:'PREPOSITION', conjunction:'CONJUNCTION', pronoun:'PRONOUN', time:'TIME', color:'COLOR', number:'NUMBER' };
+  var badgeNames = { noun:'NOUN', verb:'VERB', adverb:'ADVERB', question:'QUESTION', case:'CASE', grammar:'GRAMMAR', phrase:'PHRASE', adjective:'ADJECTIVE', preposition:'PREPOSITION', conjunction:'CONJUNCTION', pronoun:'PRONOUN', time:'TIME', color:'COLOR', number:'NUMBER', structure:'STRUCTURE' };
   var label = badgeNames[t] || t.toUpperCase();
   $('badge-type-front').textContent = label;
   $('badge-type-back').textContent = label;
@@ -621,6 +623,9 @@ function renderCardContent(c) {
     extra.style.display = 'block';
   } else if (t === 'conjunction') {
     extra.innerHTML = '<span class="gender-info">' + (c.case || 'subordinating/main clause') + '</span>';
+    extra.style.display = 'block';
+  } else if (t === 'structure') {
+    extra.innerHTML = '<span class="gender-info">' + (c.example || '') + '</span>';
     extra.style.display = 'block';
   } else if (t === 'adjective' || t === 'pronoun' || t === 'time' || t === 'color' || t === 'number') {
     extra.style.display = 'none';
@@ -783,6 +788,7 @@ function updateSidebar() {
   $('count-case').textContent = getFilteredCount('case');
   $('count-grammar').textContent = getFilteredCount('grammar');
   $('count-phrase').textContent = getFilteredCount('phrase');
+  $('count-structure').textContent = getFilteredCount('structure');
 }
 
 // ── Theme ──

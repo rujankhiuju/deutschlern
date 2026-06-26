@@ -1,5 +1,5 @@
 // DeutschLern — Complete vocabulary data
-// 1612 cards total
+// 1627 cards total
 
 var CARDS = [
   { id:'n1', level:'a1', type:'noun', german:'der Tisch', english:'table', article:'der', plural:'die Tische', emoji:'table' },
@@ -1614,6 +1614,21 @@ var CARDS = [
   { id:'p378', level:'b2', type:'phrase', german:'Offenbar', english:'Obviously', emoji:'obviously' },
   { id:'p379', level:'b2', type:'phrase', german:'Angeblich', english:'Allegedly', emoji:'allegedly' },
   { id:'p380', level:'b2', type:'phrase', german:'Vorgeblich', english:'Supposedly', emoji:'supposedly' },
+  { id:'s1', level:'a1', type:'structure', german:'Aussagesatz', english:'Statement: Subject + Verb + Object', emoji:'speech' },
+  { id:'s2', level:'a1', type:'structure', german:'Ja/Nein-Frage', english:'Yes/No Question: Verb + Subject + Object?', emoji:'question' },
+  { id:'s3', level:'a1', type:'structure', german:'W-Frage', english:'W-Question: W-Word + Verb + Subject + Object?', emoji:'ask' },
+  { id:'s4', level:'a2', type:'structure', german:'Modalverb-Satz', english:'Modal: Subject + Modalverb + Object + Infinitive', emoji:'modal' },
+  { id:'s5', level:'a2', type:'structure', german:'Trennbare Verben', english:'Separable Prefix: Subject + Verb... + Prefix', emoji:'split' },
+  { id:'s6', level:'a2', type:'structure', german:'Perfekt', english:'Perfect: Subject + haben/sein + Object + Partizip', emoji:'learn' },
+  { id:'s7', level:'a2', type:'structure', german:'Dativ vor Akkusativ', english:'Dativ vor Akkusativ: Subject + Verb + Dative + Accusative', emoji:'give' },
+  { id:'s8', level:'b1', type:'structure', german:'Nebensatz', english:'Subordinate Clause: ... + Subject + Object + Verb', emoji:'chain' },
+  { id:'s9', level:'b1', type:'structure', german:'Satz mit dass', english:'Dass-Clause: dass + Subject + Object + Verb', emoji:'know' },
+  { id:'s10', level:'b1', type:'structure', german:'Satz mit weil', english:'Weil-Clause: weil + Subject + Object + Verb', emoji:'reason' },
+  { id:'s11', level:'b1', type:'structure', german:'Relativsatz', english:'Relative Clause: Noun + Relative Pronoun + Rest + Verb', emoji:'speech' },
+  { id:'s12', level:'b1', type:'structure', german:'TEMP-Regel', english:'Time-Manner-Place: Subject + Verb + Time + Manner + Place', emoji:'travel' },
+  { id:'s13', level:'b2', type:'structure', german:'Infinitiv mit zu', english:'Infinitive with zu: ... + zu + Infinitive', emoji:'learn' },
+  { id:'s14', level:'b2', type:'structure', german:'Doppelinfinitiv', english:'Double Infinitive: ... + haben/werden + Infinitive + Infinitive', emoji:'cycle' },
+  { id:'s15', level:'b2', type:'structure', german:'Konditionalsatz', english:'Conditional: Wenn + Subject + Object + Verb, Subject + Verb + Object', emoji:'time' },
 ];
 
 var EMOJI_MAP = {
@@ -2576,7 +2591,7 @@ var EMOJI_MAP = {
   'putdifferently':'✨',
   'qualification':'✨',
   'quarter':'✨',
-  'question':'✨',
+  'question':'❓',
   'questionable':'✨',
   'quiet':'🤫',
   'quite':'📏',

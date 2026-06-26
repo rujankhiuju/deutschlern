@@ -93,7 +93,7 @@ EMOJI_DATA = [
   ("overall","\U0001F4CA"),("who","\u2753"),("what","\u2753"),
   ("whereto","\u27A1"),("wherefrom","\u2B05"),("how","\U0001F527"),
   ("when","\U0001F550"),("why","\U0001F914"),("which","\U0001F937"),
-  ("yesno","\u2705\u274C"),("subject","\U0001F464"),("target","\U0001F3AF"),
+  ("yesno","\u2705\u274C"),("question","\u2753"),("subject","\U0001F464"),("target","\U0001F3AF"),
   ("possession","\U0001F4D6"),("structure","\U0001F4D0"),("chain","\U0001F517"),
   ("present","\u23F3"),("past","\U0001F551"),("split","\U0001F500"),
   ("modal","\u26A1"),("paint","\U0001F3A8"),("graph","\U0001F4C8"),
@@ -457,7 +457,7 @@ EXISTING = [
 
 # Type codes
 TYPE_MAP = {"n":"noun","v":"verb","a":"adverb","p":"phrase","q":"question","c":"case","g":"grammar",
-            "adj":"adjective","prep":"preposition","conj":"conjunction","pron":"pronoun","t":"time","col":"color","num":"number"}
+            "adj":"adjective","prep":"preposition","conj":"conjunction","pron":"pronoun","t":"time","col":"color","num":"number","s":"structure"}
 
 def parse_existing(tup):
     tc = tup[0]
@@ -469,6 +469,9 @@ def parse_existing(tup):
         c["emoji"] = tup[7]
     elif typ == "verb":
         c["pattern"] = tup[5]
+        c["emoji"] = tup[6]
+    elif typ == "structure":
+        c["example"] = tup[5]
         c["emoji"] = tup[6]
     elif typ in ("question","case","grammar"):
         c["emoji"] = tup[5]
@@ -1882,6 +1885,22 @@ NEW_CARDS = [
   ("p","b2","p378","Offenbar","Obviously","obviously",0),
   ("p","b2","p379","Angeblich","Allegedly","allegedly",0),
   ("p","b2","p380","Vorgeblich","Supposedly","supposedly",0),
+  # ── Sentence Structures ──
+  ("s","a1","s1","Aussagesatz","Statement: Subject + Verb + Object","Ich lerne Deutsch.","speech",0),
+  ("s","a1","s2","Ja/Nein-Frage","Yes/No Question: Verb + Subject + Object?","Lernst du Deutsch?","question",0),
+  ("s","a1","s3","W-Frage","W-Question: W-Word + Verb + Subject + Object?","Was lernst du?","ask",0),
+  ("s","a2","s4","Modalverb-Satz","Modal: Subject + Modalverb + Object + Infinitive","Ich kann Deutsch lernen.","modal",0),
+  ("s","a2","s5","Trennbare Verben","Separable Prefix: Subject + Verb... + Prefix","Ich rufe dich an.","split",0),
+  ("s","a2","s6","Perfekt","Perfect: Subject + haben/sein + Object + Partizip","Ich habe Deutsch gelernt.","learn",0),
+  ("s","a2","s7","Dativ vor Akkusativ","Dativ vor Akkusativ: Subject + Verb + Dative + Accusative","Ich gebe dem Mann das Buch.","give",0),
+  ("s","b1","s8","Nebensatz","Subordinate Clause: ... + Subject + Object + Verb","weil ich Deutsch lerne","chain",0),
+  ("s","b1","s9","Satz mit dass","Dass-Clause: dass + Subject + Object + Verb","Ich weiss, dass du Deutsch lernst.","know",0),
+  ("s","b1","s10","Satz mit weil","Weil-Clause: weil + Subject + Object + Verb","Ich lerne, weil ich Deutsch sprechen will.","reason",0),
+  ("s","b1","s11","Relativsatz","Relative Clause: Noun + Relative Pronoun + Rest + Verb","Der Mann, der Deutsch spricht...","speech",0),
+  ("s","b1","s12","TEMP-Regel","Time-Manner-Place: Subject + Verb + Time + Manner + Place","Ich fahre morgen mit dem Bus nach Berlin.","travel",0),
+  ("s","b2","s13","Infinitiv mit zu","Infinitive with zu: ... + zu + Infinitive","Es ist wichtig, Deutsch zu lernen.","learn",0),
+  ("s","b2","s14","Doppelinfinitiv","Double Infinitive: ... + haben/werden + Infinitive + Infinitive","Ich habe Deutsch lernen wollen.","cycle",0),
+  ("s","b2","s15","Konditionalsatz","Conditional: Wenn + Subject + Object + Verb, Subject + Verb + Object","Wenn ich Zeit habe, lerne ich Deutsch.","time",0),
 ]
 
 # Parse new cards
@@ -1904,6 +1923,10 @@ def parse_new(tup):
         if len(tup) > 8 and tup[8] == 1: c["exam"] = True
     elif typ == "verb":
         c["pattern"] = tup[5]
+        c["emoji"] = tup[6]
+        if len(tup) > 7 and tup[7] == 1: c["exam"] = True
+    elif typ == "structure":
+        c["example"] = tup[5]
         c["emoji"] = tup[6]
         if len(tup) > 7 and tup[7] == 1: c["exam"] = True
     else:
