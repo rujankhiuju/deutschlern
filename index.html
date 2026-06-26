@@ -270,8 +270,8 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
     <div class="nav-group">
       <div class="nav-label">Vocabulary</div>
       <button class="nav-btn active" data-cat="all"><span class="dot" style="background:var(--text-muted)"></span>All<span class="count" id="count-all">0</span></button>
-      <button class="nav-btn" data-cat="nouns"><span class="dot dot-green"></span>Nouns<span class="count" id="count-nouns">0</span></button>
-      <button class="nav-btn" data-cat="verbs"><span class="dot dot-blue"></span>Verbs<span class="count" id="count-verbs">0</span></button>
+      <button class="nav-btn" data-cat="noun"><span class="dot dot-green"></span>Nouns<span class="count" id="count-noun">0</span></button>
+      <button class="nav-btn" data-cat="verb"><span class="dot dot-blue"></span>Verbs<span class="count" id="count-verb">0</span></button>
       <button class="nav-btn" data-cat="adverb"><span class="dot dot-yellow"></span>Adverbs<span class="count" id="count-adverb">0</span></button>
       <button class="nav-btn" data-cat="adjective"><span class="dot dot-orange"></span>Adjectives<span class="count" id="count-adjective">0</span></button>
       <button class="nav-btn" data-cat="preposition"><span class="dot dot-teal"></span>Prepositions<span class="count" id="count-preposition">0</span></button>
@@ -289,7 +289,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
       <button class="nav-btn" data-cat="question"><span class="dot dot-pink"></span>Questions<span class="count" id="count-question">0</span></button>
       <button class="nav-btn" data-cat="case"><span class="dot dot-cyan"></span>Cases<span class="count" id="count-case">0</span></button>
       <button class="nav-btn" data-cat="grammar"><span class="dot dot-red"></span>Grammar<span class="count" id="count-grammar">0</span></button>
-      <button class="nav-btn" data-cat="phrases"><span class="dot dot-purple"></span>Phrases<span class="count" id="count-phrases">0</span></button>
+      <button class="nav-btn" data-cat="phrase"><span class="dot dot-purple"></span>Phrases<span class="count" id="count-phrase">0</span></button>
     </div>
 
     <div style="margin-top:auto"></div>
@@ -374,7 +374,7 @@ body::before{content:'';position:fixed;inset:0;z-index:-2;background:linear-grad
     <button class="modal-close" id="about-modal-close">&times;</button>
     <h2>DeutschLern</h2>
     <p>German flashcard app with 1600+ vocabulary cards across A1&ndash;B2 CEFR levels. Study nouns, verbs, adjectives, phrases, grammar and more with spaced repetition and exam filtering.</p>
-    <div class="modal-name">Rujan Khiuju</div>
+    <div class="modal-name">by Rujan Khiuju</div>
     <a class="modal-link" href="mailto:rujankhiuju@gmail.com">&#9993; Send feedback</a>
   </div>
 </div>
@@ -766,8 +766,8 @@ function updateSidebar() {
   $('stat-pct').textContent = pct + '%';
 
   $('count-all').textContent = getFilteredCount();
-  $('count-nouns').textContent = getFilteredCount('nouns');
-  $('count-verbs').textContent = getFilteredCount('verbs');
+  $('count-noun').textContent = getFilteredCount('noun');
+  $('count-verb').textContent = getFilteredCount('verb');
   $('count-adverb').textContent = getFilteredCount('adverb');
   $('count-adjective').textContent = getFilteredCount('adjective');
   $('count-preposition').textContent = getFilteredCount('preposition');
@@ -779,7 +779,7 @@ function updateSidebar() {
   $('count-question').textContent = getFilteredCount('question');
   $('count-case').textContent = getFilteredCount('case');
   $('count-grammar').textContent = getFilteredCount('grammar');
-  $('count-phrases').textContent = getFilteredCount('phrases');
+  $('count-phrase').textContent = getFilteredCount('phrase');
 }
 
 // ── Theme ──
